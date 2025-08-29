@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "docker down:"
-docker compose -f geth.yml down
+docker compose -f geth.yml stop
 
 # sudo rm -rf blockscout-db-data
 # if [ ! -d "blockscout-db-data" ]; then
