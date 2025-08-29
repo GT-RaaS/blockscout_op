@@ -30,10 +30,10 @@ services:
       - db:database
     environment:
         ETHEREUM_JSONRPC_VARIANT: 'anvil'
-        ETHEREUM_JSONRPC_WS_URL: ws://host.docker.internal:8545/
+        ETHEREUM_JSONRPC_WS_URL: ws://host.docker.internal:9545/
         INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER: 'true'
         INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: 'true'
-        CHAIN_ID: '1337'
+        CHAIN_ID: '42069'
 
   visualizer:
     extends:
@@ -52,7 +52,7 @@ services:
       file: ./services/frontend.yml
       service: frontend
     environment:
-      NEXT_PUBLIC_NETWORK_ID: '1337'
+      NEXT_PUBLIC_NETWORK_ID: '42069'
       NEXT_PUBLIC_NETWORK_RPC_URL: http://host.docker.internal:8545/
 
   stats-db-init:
@@ -84,11 +84,11 @@ services:
       file: ./services/user-ops-indexer.yml
       service: user-ops-indexer
 
-  proxy:
-    depends_on:
-      - backend
-      - frontend
-      - stats
-    extends:
-      file: ./services/nginx.yml
-      service: proxy
+  # proxy:
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  #     - stats
+  #   extends:
+  #     file: ./services/nginx.yml
+  #     service: proxy

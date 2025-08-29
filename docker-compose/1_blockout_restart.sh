@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "docker down:"
-docker compose -f no-services.yml stop
+docker compose -f anvil.yml stop
 
 # 检查文件夹是否存在，如果不存在则创建
 if [ ! -d "blockscout-db-data" ]; then
@@ -18,8 +18,8 @@ fi
 
 echo
 echo "docker up:"
-DOCKER_REPO=blockscout-optimism docker compose -f no-services.yml up -d
+DOCKER_REPO=blockscout-optimism docker compose -f anvil.yml up -d
 
 echo
 echo "docker ps:"
-docker compose -f no-services.yml ps
+docker compose -f anvil.yml ps
