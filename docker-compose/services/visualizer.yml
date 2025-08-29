@@ -9,6 +9,5 @@ services:
     container_name: 'visualizer'
     env_file:
       -  ../envs/common-visualizer.env
-    # ports:
-    #   - "8051:8051"
-    network_mode: "host"
+    ports:
+      - "8051:8051"
