@@ -4,7 +4,7 @@ services:
   db-init:
     image: postgres:17
     volumes:
-      - ./blockscout-db-data:/var/lib/postgresql/data
+      - /home/ubuntu/work/blockscout_op/docker-compose/blockscout-db-data:/var/lib/postgresql/data
     entrypoint:
       - sh
       - -c
