@@ -16,7 +16,7 @@ services:
     image: postgres:14-alpine
     platform: linux/amd64
     user: 2000:2000
-    shm_size: 4m
+    shm_size: 400m
     restart: always
     container_name: 'db'
     command: postgres -c 'max_connections=2000' -c 'client_connection_check_interval=60000'
