@@ -5,7 +5,7 @@ docker compose -f docker-compose.yml down
 
 echo
 echo "docker up:"
-docker compose -f docker-compose.yml up -d
+DOCKER_REPO=blockscout-optimism docker compose -f docker-compose.yml up -d
 
 echo
 echo "docker ps:"
