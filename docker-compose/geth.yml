@@ -1,17 +1,24 @@
 version: '3.9'
 
+x-platform:
+  &default-platform
+  platform: linux/amd64
+
 services:
   redis-db:
+    <<: *default-platform
     extends:
       file: ./services/redis.yml
       service: redis-db
 
   db-init:
+    <<: *default-platform
     extends:
       file: ./services/db.yml
       service: db-init
 
   db:
+    <<: *default-platform
     depends_on:
       db-init:
         condition: service_completed_successfully
@@ -20,6 +27,7 @@ services:
       service: db
 
   backend:
+    <<: *default-platform
     depends_on:
       - db
       - redis-db
@@ -34,6 +42,7 @@ services:
         ETHEREUM_JSONRPC_VARIANT: 'geth'
 
   visualizer:
+    <<: *default-platform
     extends:
       file: ./services/visualizer.yml
       service: visualizer
@@ -41,11 +50,13 @@ services:
       - "8051:8051"
 
   sig-provider:
+    <<: *default-platform
     extends:
       file: ./services/sig-provider.yml
       service: sig-provider
 
   frontend:
+    <<: *default-platform
     depends_on:
       - backend
     extends:
@@ -55,11 +66,13 @@ services:
       - "3000:3000"
 
   stats-db-init:
+    <<: *default-platform
     extends:
       file: ./services/stats.yml
       service: stats-db-init
 
   stats-db:
+    <<: *default-platform
     depends_on:
       stats-db-init:
         condition: service_completed_successfully
@@ -68,6 +81,7 @@ services:
       service: stats-db
 
   stats:
+    <<: *default-platform
     depends_on:
       - stats-db
       - backend
@@ -78,6 +92,7 @@ services:
       - "8050:8050"
 
   user-ops-indexer:
+    <<: *default-platform
     depends_on:
       - db
       - backend
