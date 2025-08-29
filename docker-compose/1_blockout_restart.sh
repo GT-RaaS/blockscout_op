@@ -18,6 +18,16 @@ docker compose -f geth.yml down
 #     mkdir -p redis-data
 # fi
 
+if [ ! -d "logs" ]; then
+    mkdir -p logs
+fi
+
+if [ ! -d "redis-data" ]; then
+    mkdir -p redis-data
+fi
+
+
+
 echo
 echo "docker up:"
 DOCKER_REPO=blockscout-optimism docker compose -f geth.yml up -d
