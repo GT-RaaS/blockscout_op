@@ -55,13 +55,3 @@ services:
       NEXT_PUBLIC_STATS_API_HOST:
     ports:
       - "3000:3000"
-
-  # proxy:
-  #   depends_on:
-  #     - backend
-  #     - frontend
-  #   extends:
-  #     file: ./services/nginx-explorer.yml
-  #     service: proxy
-  #   volumes:
-  #     - "./proxy/explorer.conf.template:/etc/nginx/templates/default.conf.template"
