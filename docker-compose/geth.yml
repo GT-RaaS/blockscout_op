@@ -40,9 +40,9 @@ services:
       - "4000:4000"  # 映射端口到宿主机
     environment:
         ETHEREUM_JSONRPC_VARIANT: 'geth'
-        ETHEREUM_JSONRPC_HTTP_URL: http://lcoalhost:9545/
-        ETHEREUM_JSONRPC_TRACE_URL: http://lcoalhost:9545/
-        ETHEREUM_JSONRPC_WS_URL: ws://lcoalhost:9545/
+        ETHEREUM_JSONRPC_HTTP_URL: http://43.133.22.92:8545 /
+        ETHEREUM_JSONRPC_TRACE_URL: http://43.133.22.92:9545/
+        ETHEREUM_JSONRPC_WS_URL: ws://43.133.22.92:9545/
         CHAIN_ID: '42069'
 
   visualizer:
