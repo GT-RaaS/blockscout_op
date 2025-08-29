@@ -2,7 +2,8 @@ version: '3.9'
 
 services:
   db-init:
-    image: postgres:17
+    image: postgres:14-alpine
+    platform: linux/amd64
     volumes:
       - ./blockscout-db-data:/var/lib/postgresql/data
     entrypoint:
@@ -12,9 +13,10 @@ services:
         chown -R 2000:2000 /var/lib/postgresql/data
 
   db:
-    image: postgres:17
+    image: postgres:14-alpine
+    platform: linux/amd64
     user: 2000:2000
-    shm_size: 256m
+    shm_size: 4m
     restart: always
     container_name: 'db'
     command: postgres -c 'max_connections=200' -c 'client_connection_check_interval=60000'
