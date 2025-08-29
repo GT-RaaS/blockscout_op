@@ -31,8 +31,8 @@ services:
       dockerfile: ./docker/Dockerfile
       args:
         RELEASE_VERSION: 9.0.2
-    # links:
-    #   - db:database
+    links:
+      - db:database
     ports:
       - "4000:4000"  # 映射端口到宿主机
     environment:
@@ -41,7 +41,7 @@ services:
         ETHEREUM_JSONRPC_WS_URL: ws://172.17.0.1:8545/
         CHAIN_ID: '42069'
         DATABASE_URL: postgresql://blockscout:blockscout@db:5432/blockscout
-    # network_mode: "host"
+  
 
   nft_media_handler:
     depends_on:
@@ -61,7 +61,6 @@ services:
       service: visualizer
     ports:
       - "8051:8051"
-    # network_mode: "host"
 
   sig-provider:
     extends:
@@ -76,7 +75,7 @@ services:
       service: frontend
     ports:
       - "3000:3000"
-    # network_mode: "host"
+
 
   stats-db-init:
     extends:
@@ -100,7 +99,7 @@ services:
       service: stats
     ports:
       - "8050:8050"
-    # network_mode: "host"
+
 
   user-ops-indexer:
     depends_on:
