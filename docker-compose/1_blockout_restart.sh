@@ -20,7 +20,7 @@ docker compose -f no-services.yml down
 
 echo
 echo "docker up:"
-DOCKER_REPO=blockscout-optimism docker compose -f no-services.yml up --build -d
+DOCKER_REPO=blockscout-optimism docker compose -f no-services.yml up -d
 
 echo
 echo "docker ps:"
