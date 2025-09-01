@@ -24,4 +24,4 @@ DOCKER_REPO=blockscout-optimism docker compose -f no-services.yml up -d
 
 echo
 echo "docker ps:"
-docker compose -f no-services.yml ps
+watch docker compose -f no-services.yml ps

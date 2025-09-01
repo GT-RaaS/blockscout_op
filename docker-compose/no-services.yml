@@ -26,15 +26,15 @@ services:
     extends:
       file: ./services/backend.yml
       service: backend
-    build:
-      context: ..
-      dockerfile: ./docker/Dockerfile
-      args:
-        API_V1_READ_METHODS_DISABLED: "false"
-        DISABLE_WEBAPP: "false"
-        API_V1_WRITE_METHODS_DISABLED: "false"
-        ADMIN_PANEL_ENABLED: ""
-        RELEASE_VERSION: 9.0.2
+    # build:
+    #   context: ..
+    #   dockerfile: ./docker/Dockerfile
+    #   args:
+    #     API_V1_READ_METHODS_DISABLED: "false"
+    #     DISABLE_WEBAPP: "false"
+    #     API_V1_WRITE_METHODS_DISABLED: "false"
+    #     ADMIN_PANEL_ENABLED: ""
+    #     RELEASE_VERSION: 9.0.2
     links:
       - db:database
     ports:
