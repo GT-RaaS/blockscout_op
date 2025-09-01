@@ -1,17 +1,24 @@
 version: '3.9'
 
+x-platform:
+  &default-platform
+  platform: linux/amd64
+
 services:
   redis-db:
+    <<: *default-platform
     extends:
       file: ./services/redis.yml
       service: redis-db
 
   db-init:
+    <<: *default-platform
     extends:
       file: ./services/db.yml
       service: db-init
 
   db:
+    <<: *default-platform
     depends_on:
       db-init:
         condition: service_completed_successfully
@@ -20,6 +27,7 @@ services:
       service: db
 
   backend:
+    <<: *default-platform
     depends_on:
       - db
       - redis-db
@@ -28,32 +36,47 @@ services:
       service: backend
     links:
       - db:database
+    ports:
+      - "4000:4000"  # 映射端口到宿主机
     environment:
         ETHEREUM_JSONRPC_VARIANT: 'geth'
+        ETHEREUM_JSONRPC_HTTP_URL: http://43.133.22.92:8545/
+        ETHEREUM_JSONRPC_TRACE_URL: http://43.133.22.92:8545/
+        ETHEREUM_JSONRPC_WS_URL: ws://43.133.22.92:8546/
+        CHAIN_ID: '42069'
 
   visualizer:
+    <<: *default-platform
     extends:
       file: ./services/visualizer.yml
       service: visualizer
+    ports:
+      - "8051:8051"
 
   sig-provider:
+    <<: *default-platform
     extends:
       file: ./services/sig-provider.yml
       service: sig-provider
 
   frontend:
+    <<: *default-platform
     depends_on:
       - backend
     extends:
       file: ./services/frontend.yml
       service: frontend
+    ports:
+      - "3000:3000"
 
   stats-db-init:
+    <<: *default-platform
     extends:
       file: ./services/stats.yml
       service: stats-db-init
 
   stats-db:
+    <<: *default-platform
     depends_on:
       stats-db-init:
         condition: service_completed_successfully
@@ -62,14 +85,18 @@ services:
       service: stats-db
 
   stats:
+    <<: *default-platform
     depends_on:
       - stats-db
       - backend
     extends:
       file: ./services/stats.yml
       service: stats
+    ports:
+      - "8050:8050"
 
   user-ops-indexer:
+    <<: *default-platform
     depends_on:
       - db
       - backend
