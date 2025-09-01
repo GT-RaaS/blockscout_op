@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   db-init:
-    image: postgres:17
+    image: postgres:14-alpine
     platform: linux/amd64
     volumes:
       - ./blockscout-db-data:/var/lib/postgresql/data
@@ -13,7 +13,7 @@ services:
         chown -R 2000:2000 /var/lib/postgresql/data
 
   db:
-    image: postgres:17
+    image: postgres:14-alpine
     platform: linux/amd64
     user: 2000:2000
     shm_size: 400m
