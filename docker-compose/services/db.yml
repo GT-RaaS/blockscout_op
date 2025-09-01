@@ -10,7 +10,7 @@ services:
       - sh
       - -c
       - |
-        sudo chown -R 2000:2000 /var/lib/postgresql/data
+        chown -R 2000:2000 /var/lib/postgresql/data
 
   db:
     image: postgres:14-alpine
