@@ -3,20 +3,20 @@
 echo "docker down:"
 docker compose -f geth.yml down
 
-sudo rm -rf blockscout-db-data
-if [ ! -d "blockscout-db-data" ]; then
-    mkdir -p blockscout-db-data
-fi
+# sudo rm -rf blockscout-db-data
+# if [ ! -d "blockscout-db-data" ]; then
+#     mkdir -p blockscout-db-data
+# fi
 
-sudo rm -rf logs
-if [ ! -d "logs" ]; then
-    mkdir -p logs
-fi
+# sudo rm -rf logs
+# if [ ! -d "logs" ]; then
+#     mkdir -p logs
+# fi
 
-sudo rm -rf redis-data
-if [ ! -d "redis-data" ]; then
-    mkdir -p redis-data
-fi
+# sudo rm -rf redis-data
+# if [ ! -d "redis-data" ]; then
+#     mkdir -p redis-data
+# fi
 
 echo
 echo "docker up:"
