@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "docker down:"
-docker compose -f geth.yml down
+docker compose -f no-services.yml down
 
 # sudo rm -rf blockscout-db-data
 # if [ ! -d "blockscout-db-data" ]; then
@@ -20,8 +20,8 @@ docker compose -f geth.yml down
 
 echo
 echo "docker up:"
-DOCKER_REPO=blockscout-optimism docker compose -f geth.yml up -d
+docker compose -f no-services.yml up --build -d
 
 echo
 echo "docker ps:"
-docker compose -f geth.yml ps
+docker compose -f no-services.yml ps
