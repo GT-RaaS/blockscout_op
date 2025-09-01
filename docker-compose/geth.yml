@@ -77,11 +77,11 @@ services:
       file: ./services/user-ops-indexer.yml
       service: user-ops-indexer
 
-  proxy:
-    depends_on:
-      - backend
-      - frontend
-      - stats
-    extends:
-      file: ./services/nginx.yml
-      service: proxy
+  # proxy:
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  #     - stats
+  #   extends:
+  #     file: ./services/nginx.yml
+  #     service: proxy
