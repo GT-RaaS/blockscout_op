@@ -3,8 +3,9 @@ version: '3.9'
 services:
   db-init:
     image: postgres:17
+    platform: linux/amd64
     volumes:
-      - ./blockscout-db-data:/var/lib/postgresql/data
+      - /home/ubuntu/work/blockscout_op/docker-compose/blockscout-db-data:/var/lib/postgresql/data
     entrypoint:
       - sh
       - -c
@@ -13,11 +14,12 @@ services:
 
   db:
     image: postgres:17
+    platform: linux/amd64
     user: 2000:2000
-    shm_size: 256m
+    shm_size: 400m
     restart: always
     container_name: 'db'
-    command: postgres -c 'max_connections=200' -c 'client_connection_check_interval=60000'
+    command: postgres -c 'max_connections=2000' -c 'client_connection_check_interval=60000' -c 'shared_buffers=1GB' -c 'effective_cache_size=2GB' -c 'deadlock_timeout=1s' -c 'lock_timeout=30s' -c 'statement_timeout=300s'
     environment:
         POSTGRES_DB: 'blockscout'
         POSTGRES_USER: 'blockscout'
@@ -26,7 +28,7 @@ services:
       - target: 5432
         published: 7432
     volumes:
-      - ./blockscout-db-data:/var/lib/postgresql/data
+      - /home/ubuntu/work/blockscout_op/docker-compose/blockscout-db-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U blockscout -d blockscout"]
       interval: 10s
