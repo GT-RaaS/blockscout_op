@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "IP: 43.133.182.153"
+
 echo "docker down:"
 docker compose -f geth.yml stop
 
@@ -18,13 +20,13 @@ docker compose -f geth.yml stop
 #     mkdir -p redis-data
 # fi
 
-if [ ! -d "logs" ]; then
-    mkdir -p logs
-fi
+# if [ ! -d "logs" ]; then
+#     mkdir -p logs
+# fi
 
-if [ ! -d "redis-data" ]; then
-    mkdir -p redis-data
-fi
+# if [ ! -d "redis-data" ]; then
+#     mkdir -p redis-data
+# fi
 
 echo
 echo "docker up:"
@@ -32,4 +34,4 @@ DOCKER_REPO=blockscout-optimism docker compose -f geth.yml up -d
 
 echo
 echo "docker ps:"
-docker compose -f geth.yml ps
+watch -n 1 docker compose -f geth.yml ps
