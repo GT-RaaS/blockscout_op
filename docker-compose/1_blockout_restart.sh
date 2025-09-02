@@ -5,6 +5,9 @@ echo "IP: 43.133.182.153"
 echo "docker stop:"
 docker compose -f geth.yml stop
 
+sudo chmod -R 777  dets/
+sudo chmod -R 777  logs/
+
 echo
 echo "docker up:"
 DOCKER_REPO=blockscout-optimism docker compose -f geth.yml up -d
