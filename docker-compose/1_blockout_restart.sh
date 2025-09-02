@@ -2,31 +2,8 @@
 
 echo "IP: 43.133.182.153"
 
-echo "docker down:"
+echo "docker stop:"
 docker compose -f geth.yml stop
-
-# sudo rm -rf blockscout-db-data
-# if [ ! -d "blockscout-db-data" ]; then
-#     mkdir -p blockscout-db-data
-# fi
-
-# sudo rm -rf logs
-# if [ ! -d "logs" ]; then
-#     mkdir -p logs
-# fi
-
-# sudo rm -rf redis-data
-# if [ ! -d "redis-data" ]; then
-#     mkdir -p redis-data
-# fi
-
-# if [ ! -d "logs" ]; then
-#     mkdir -p logs
-# fi
-
-# if [ ! -d "redis-data" ]; then
-#     mkdir -p redis-data
-# fi
 
 echo
 echo "docker up:"
