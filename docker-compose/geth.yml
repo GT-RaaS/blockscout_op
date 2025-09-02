@@ -45,19 +45,19 @@ services:
         ETHEREUM_JSONRPC_WS_URL: ws://43.133.22.92:8546/
         CHAIN_ID: '42069'
 
-  # visualizer:
-  #   <<: *default-platform
-  #   extends:
-  #     file: ./services/visualizer.yml
-  #     service: visualizer
-  #   ports:
-  #     - "8051:8051"
+  visualizer:
+    <<: *default-platform
+    extends:
+      file: ./services/visualizer.yml
+      service: visualizer
+    ports:
+      - "8051:8051"
 
-  # sig-provider:
-  #   <<: *default-platform
-  #   extends:
-  #     file: ./services/sig-provider.yml
-  #     service: sig-provider
+  sig-provider:
+    <<: *default-platform
+    extends:
+      file: ./services/sig-provider.yml
+      service: sig-provider
 
   frontend:
     <<: *default-platform
@@ -69,31 +69,31 @@ services:
     ports:
       - "3000:3000"
 
-  # stats-db-init:
-  #   <<: *default-platform
-  #   extends:
-  #     file: ./services/stats.yml
-  #     service: stats-db-init
+  stats-db-init:
+    <<: *default-platform
+    extends:
+      file: ./services/stats.yml
+      service: stats-db-init
 
-  # stats-db:
-  #   <<: *default-platform
-  #   depends_on:
-  #     stats-db-init:
-  #       condition: service_completed_successfully
-  #   extends:
-  #     file: ./services/stats.yml
-  #     service: stats-db
+  stats-db:
+    <<: *default-platform
+    depends_on:
+      stats-db-init:
+        condition: service_completed_successfully
+    extends:
+      file: ./services/stats.yml
+      service: stats-db
 
-  # stats:
-  #   <<: *default-platform
-  #   depends_on:
-  #     - stats-db
-  #     - backend
-  #   extends:
-  #     file: ./services/stats.yml
-  #     service: stats
-  #   ports:
-  #     - "8050:8050"
+  stats:
+    <<: *default-platform
+    depends_on:
+      - stats-db
+      - backend
+    extends:
+      file: ./services/stats.yml
+      service: stats
+    ports:
+      - "8050:8050"
 
   # user-ops-indexer:
   #   <<: *default-platform
