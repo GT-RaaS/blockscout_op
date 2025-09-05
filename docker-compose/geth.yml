@@ -43,7 +43,7 @@ services:
         ETHEREUM_JSONRPC_HTTP_URL: http://43.130.243.244:8545/
         ETHEREUM_JSONRPC_TRACE_URL: http://43.130.243.244:8545/
         ETHEREUM_JSONRPC_WS_URL: ws://43.130.243.244:8546/
-        CHAIN_ID: '42069'
+        CHAIN_ID: '10087'
 
   visualizer:
     <<: *default-platform
