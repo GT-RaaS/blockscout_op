@@ -13,5 +13,5 @@ services:
     env_file:
       -  ../envs/common-blockscout.env
     volumes:
-      - /home/ubuntu/work/blockscout_op/docker-compose/logs/:/app/logs/
-      - /home/ubuntu/work/blockscout_op/docker-compose/dets/:/app/dets/
+      - ./logs/:/app/logs/
+      - ./dets/:/app/dets/
