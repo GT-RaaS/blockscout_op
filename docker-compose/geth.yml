@@ -94,21 +94,3 @@ services:
       service: stats
     ports:
       - "8050:8050"
-
-  user-ops-indexer:
-    <<: *default-platform
-    depends_on:
-      - db
-      - backend
-    extends:
-      file: ./services/user-ops-indexer.yml
-      service: user-ops-indexer
-
-  # proxy:
-  #   depends_on:
-  #     - backend
-  #     - frontend
-  #     - stats
-  #   extends:
-  #     file: ./services/nginx.yml
-  #     service: proxy
